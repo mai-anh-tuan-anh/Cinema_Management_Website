@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { movies } from '../data/movies';
+import { movies, showtimes } from '../data/movies';
+import {
+    saveMoviesToStorage,
+    saveShowtimesToStorage
+} from '../utils/localStorageUtils';
 
 const AddMovie = ({ onMovieAdded }) => {
     const [formData, setFormData] = useState({
@@ -53,11 +57,29 @@ const AddMovie = ({ onMovieAdded }) => {
             ...(formData.ageRating && { ageRating: formData.ageRating })
         };
 
+        // Generate showtimes for new movie
+        const generateShowtimes = (movieId) => {
+            const defaultTimes = ['09:00', '12:30', '15:30', '18:30', '21:30'];
+            const roomNumber = ((movieId - 1) % 5) + 1; // Rotate between rooms 1-5
+
+            return defaultTimes.map((time, index) => ({
+                movieId: movieId,
+                id: showtimes.length + index + 1, // Generate unique ID
+                time: time,
+                room: `Phòng ${roomNumber}`
+            }));
+        };
+
         // Add to movies array
         const updatedMovies = [...existingMovies, newMovie];
 
-        // Save to localStorage
-        localStorage.setItem('movies', JSON.stringify(updatedMovies));
+        // Generate and save showtimes
+        const newShowtimes = generateShowtimes(newId);
+        const updatedShowtimes = [...showtimes, ...newShowtimes];
+
+        // Save to localStorage with real-time sync
+        saveMoviesToStorage(updatedMovies);
+        saveShowtimesToStorage(updatedShowtimes);
 
         // Reset form
         setFormData({

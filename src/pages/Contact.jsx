@@ -354,7 +354,7 @@ const Contact = () => {
                             </h5>
                             <div className='d-flex gap-2'>
                                 <a
-                                    href='https://facebook.com'
+                                    href='https://www.facebook.com/CJCGV'
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     className='btn btn-outline-primary btn-sm flex-fill'
@@ -362,7 +362,7 @@ const Contact = () => {
                                     Facebook
                                 </a>
                                 <a
-                                    href='https://instagram.com'
+                                    href='https://www.instagram.com/cgvcinemasvietnam/'
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     className='btn btn-outline-danger btn-sm flex-fill'
@@ -370,12 +370,12 @@ const Contact = () => {
                                     Instagram
                                 </a>
                                 <a
-                                    href='https://twitter.com'
+                                    href='https://www.tiktok.com/@cgv_vn?lang=en'
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     className='btn btn-outline-info btn-sm flex-fill'
                                 >
-                                    Twitter
+                                    TikTok
                                 </a>
                             </div>
                         </div>

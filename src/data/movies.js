@@ -18,7 +18,7 @@ export const movies = [
     },
     {
         id: 2,
-        title: 'Avatar 3: Lửa và Tro tàn',
+        title: 'Avatar 3: Lửa Và Tro tàn',
         genre: 'Khoa Học, Viễn Tưởng, Phiêu Lưu',
         duration: 156,
         rating: 4.8,
@@ -33,7 +33,7 @@ export const movies = [
     },
     {
         id: 3,
-        title: '1 Đêm Mất Ngủ',
+        title: 'Outlast: Một Đêm Mất Ngủ',
         genre: 'Kinh Dị, Tâm Lý, Hành Động, Lén Lút, Bựa',
         duration: 108,
         rating: 4.2,
@@ -49,13 +49,13 @@ export const movies = [
     },
     {
         id: 4,
-        title: '5 Đêm Cùng Diddy',
+        title: 'Năm Đêm Cùng Diddy',
         genre: 'Ám Ảnh, Kinh Dị, Kinh Hoàng, Tâm Lý, Hành Động, Lén Lút',
         duration: 95,
         rating: 0.5,
         status: 'now-showing',
         poster: 'https://th.bing.com/th/id/R.0ac16a74286cef7b9ce725e6b998f3b0?rik=VYeY%2fSGwZ0jXyA&riu=http%3a%2f%2fwww.bustedtees.com%2fcdn%2fshop%2ffiles%2f1_09865ca1-dae1-4992-8f08-48d117eb1b8c_1200x630.png%3fv%3d1727105653&ehk=%2fGR8PBId7Cr5A%2fqN9%2fKNioch9ufp5gL7cp4RiAZoggk%3d&risl=&pid=ImgRaw&r=0',
-        trailer: 'https://www.youtube.com/embed/6hB3S9bIaco',
+        trailer: 'https://www.youtube.com/embed/UXp2T7cCUw4',
         description:
             'Một bộ phim hài lãng mạn nhẹ nhàng về cuộc sống thường ngày. Những tình huống dở khóc dở cười sẽ mang đến tiếng cười cho cả gia đình.',
         price: 75000,
@@ -80,7 +80,7 @@ export const movies = [
     },
     {
         id: 6,
-        title: 'Xác Ướm: Lời Nguyền Tái Sinh',
+        title: 'Xác Ướp: Lời Nguyền Tái Sinh',
         genre: 'Kinh Dị, Hành Động, Ám Ảnh',
         duration: 162,
         rating: 4.7,
@@ -96,22 +96,22 @@ export const movies = [
     },
     {
         id: 7,
-        title: 'Những Giọt Nước Mắt',
-        genre: 'Tâm lý, Chính kịch',
+        title: 'Hành Trình Huyền Thoại',
+        genre: 'Phiêu Lưu, Hành Động, Sử Thi, Thần Thoại',
         duration: 127,
         rating: 4.4,
         status: 'coming-soon',
-        poster: 'https://images.unsplash.com/photo-1640127249305-793865c2efe1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkcmFtYSUyMGVtb3Rpb25hbCUyMGNpbmVtYXxlbnwxfHx8fDE3NzMzNzk3NjB8MA&ixlib=rb-4.1.0&q=80&w=1080',
-        trailer: 'https://www.youtube.com/embed/gH-VYnMTHc4',
+        poster: 'https://tse4.mm.bing.net/th/id/OIP.DK4xjKIoneNQC3r9g06-BgDwEs?rs=1&pid=ImgDetMain&o=7&rm=3',
+        trailer: 'https://www.youtube.com/embed/Mzw2ttJD2qQ',
         description:
-            'Một câu chuyện cảm động về gia đình và tình yêu thương. Những thử thách trong cuộc sống khiến họ phải học cách trân trọng những gì mình có.',
-        price: 80000,
-        director: 'Greta Gerwig',
-        cast: 'Saoirse Ronan, Florence Pugh, Emma Watson'
+            'Sau cuộc chiến thành Troy, người anh hùng Odysseus bắt đầu hành trình trở về quê hương Ithaca, nhưng đó lại là một chuyến đi kéo dài đầy gian nan và thử thách khắc nghiệt. Trên con đường vượt đại dương bao la, ông phải đối mặt với những sinh vật huyền thoại, sự can thiệp của các vị thần và vô số cạm bẫy chết người đe dọa mạng sống. Khi thời gian trôi qua, niềm hy vọng đoàn tụ với gia đình dần trở nên mong manh, trong khi lòng kiên định và ý chí sinh tồn của ông bị thử thách đến giới hạn. Giữa những mất mát, phản bội và cám dỗ, hành trình của Odysseus không chỉ là cuộc chiến để trở về mà còn là hành trình khám phá bản chất con người, danh dự và số phận.',
+        price: 100000,
+        director: 'Christopher Nolan',
+        cast: 'Matt Damon, Tom Holland, Anne Hathaway'
     },
     {
         id: 8,
-        title: 'Sát Thủ Cưa Máy',
+        title: 'Quỷ Cưa Máy: Ký Sự Của Reze',
         genre: 'Hành Động, Kinh Dị, Siêu Nhiên',
         duration: 145,
         rating: 4.5,
@@ -122,127 +122,130 @@ export const movies = [
             'Trong một thế giới nơi những con quỷ sinh ra từ nỗi sợ hãi của con người hoành hành khắp nơi, Denji – một chàng trai nghèo khổ, sống lay lắt bằng nghề săn quỷ – vô tình bị phản bội và rơi vào cái chết tàn khốc. Tuy nhiên, nhờ sự hợp nhất kỳ lạ với một con quỷ cưa máy, cậu hồi sinh với sức mạnh kinh hoàng, trở thành một thực thể nửa người nửa quỷ. Bị cuốn vào tổ chức săn quỷ bí mật, Denji phải tham gia vào những nhiệm vụ đẫm máu, đối đầu với các sinh vật siêu nhiên đáng sợ và từng bước khám phá bản chất thật sự của thế giới mà mình đang sống. Giữa những trận chiến tàn bạo, những mối quan hệ méo mó và khát khao rất “con người”, hành trình của Denji dần biến thành cuộc chiến sinh tồn đầy ám ảnh, nơi ranh giới giữa nhân tính và quỷ dữ trở nên mong manh hơn bao giờ hết.',
         price: 80000,
         director: 'Tatsuya Yoshihara',
-        cast: 'Kikunosuke Toya, Tomori Kusunoki, Shogo Sakata'
+        cast: 'Kikunosuke Toya, Tomori Kusunoki, Shogo Sakata',
+        ageRating: '18+'
     },
     {
         id: 9,
-        title: 'John Wick 5',
-        genre: 'Hành Động, Tội Phạm, Giật Gân',
+        title: 'Thanh Gươm Diệt Quỷ: Vô Hạn Thành',
+        genre: 'Hành Động, Siêu Nhiên, Shounen, Cảm Xúc',
         duration: 138,
         rating: 4.7,
         status: 'now-showing',
-        poster: 'https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF4U1bfo4L.jpg',
-        trailer: 'https://www.youtube.com/embed/C_0q0t9A9Wo',
+        poster: 'https://cdn.amkstation.com/wp-content/uploads/2025/03/demon-slayer_-kimetsu-no-yaiba-infinity-castle-theatrical-date-poster-us-768x1085-1.webp',
+        trailer: 'https://www.youtube.com/embed/x7uLutVRBfI',
         description:
-            'Sau khi trả thù cho chú chó của mình và chiến đấu chống lại thế giới ngầm, John Wick phải đối mặt với thách thức lớn nhất khi một hợp đồng mới được đặt ra cho anh. Với giá trị 14 triệu đô la trên đầu, Wick phải chạy trốn và chiến đấu để tồn tại trong một thế giới mà mọi sát thủ đều muốn có được phần thưởng.',
-        price: 95000,
-        director: 'Chad Stahelski',
-        cast: 'Keanu Reeves, Laurence Fishburne, Ian McShane'
+            'Khi cuộc chiến giữa Sát Quỷ Đoàn và thế lực quỷ dữ bước vào giai đoạn khốc liệt nhất, Tanjiro cùng các đồng đội bị cuốn vào Vô Hạn Thành – một mê cung không gian biến đổi không ngừng, nơi ẩn náu của những con quỷ mạnh nhất. Tại đây, mỗi bước đi đều là một trận chiến sinh tử khi họ phải đối mặt với các Thượng Huyền Quỷ đầy áp đảo. Trong khi ranh giới giữa sự sống và cái chết trở nên mong manh, những bí mật về nguồn gốc sức mạnh của quỷ dần được hé lộ, kéo theo những hy sinh không thể tránh khỏi. Giữa tuyệt vọng và hy vọng mong manh, Tanjiro buộc phải vượt qua giới hạn bản thân để bảo vệ những người thân yêu và chấm dứt cuộc chiến kéo dài hàng thế kỷ.',
+        price: 90000,
+        director: 'Haruo Sotozaki',
+        cast: 'Natsuki Hanae, Akari Kito, Yoshitsugu Matsuoka'
     },
     {
         id: 10,
-        title: 'Oppenheimer',
-        genre: 'Chính kịch, Lịch sử, Tiểu sử',
-        duration: 180,
-        rating: 4.9,
+        title: 'Doraemon: Cuộc Phiêu Lưu Dưới Đáy Biển',
+        genre: 'Hoạt Hình, Phiêu Lưu, Gia Đình, Khoa Học',
+        duration: 103,
+        rating: 4.5,
         status: 'now-showing',
-        poster: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGcd7OMO8lB.jpg',
-        trailer: 'https://www.youtube.com/embed/uYPbbksJxIg',
+        poster: 'https://m.media-amazon.com/images/M/MV5BNTZlMzRjZTUtZDVjNi00ODFiLWFmMzEtMzQ1ODIwOWQ3YjIwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
+        trailer: 'https://www.youtube.com/embed/dvU9Mv1cfAw',
         description:
-            'Câu chuyện về J. Robert Oppenheimer, nhà vật lý lý thuyết người Mỹ và là cha đẻ của bom nguyên tử. Bộ phim theo chân ông từ thời gian làm việc tại dự án Manhattan cho đến những hậu quả của phát minh vũ khí hạt nhân.',
-        price: 90000,
-        director: 'Christopher Nolan',
-        cast: 'Cillian Murphy, Emily Blunt, Matt Damon'
+            'Trong một chuyến phiêu lưu mới dưới đáy đại dương sâu thẳm, Nobita và những người bạn vô tình khám phá ra một vương quốc bí ẩn bị lãng quên từ lâu. Khi những thế lực đen tối thức tỉnh từ tàn tích của “Lâu đài Quỷ Biển”, cả nhóm bị cuốn vào một cuộc chiến sinh tồn đầy nguy hiểm giữa lòng đại dương. Với sự hỗ trợ từ những bảo bối thần kỳ của Doraemon, họ phải đối mặt với những sinh vật biển kỳ dị, giải mã các bí ẩn cổ xưa và tìm cách ngăn chặn thảm họa đe dọa thế giới trên mặt đất. Giữa những thử thách khắc nghiệt, tình bạn, lòng dũng cảm và sự trưởng thành của Nobita được thử thách hơn bao giờ hết.',
+        price: 80000,
+        director: 'Ayumu Watanabe',
+        cast: 'Wasabi Mizuta, Megumi Oohara, Yumi Kakazu, Subaru Kimura'
     },
     {
         id: 11,
-        title: 'Barbie',
-        genre: 'Hài, Phiêu lưu, Gia đình',
+        title: 'Quỷ Nhập Tràng 2',
+        genre: 'Kinh Dị, Tâm Linh, Giật Gân, Bí Ẩn',
         duration: 114,
         rating: 4.3,
         status: 'now-showing',
-        poster: 'https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6vziZ054i9qMxEKJ.jpg',
-        trailer: 'https://www.youtube.com/embed/pBk4NYhWNMM',
+        poster: 'https://bazaarvietnam.vn/wp-content/uploads/2026/01/bzvn-quy-nhap-trang-2-poster-chinh-thuc.jpg',
+        trailer: 'https://www.youtube.com/embed/q0UWKBzFFxQ',
         description:
-            'Barbie và Ken đang tận hưởng cuộc sống trong thế giới đầy màu sắc và tưởng tượng của Barbie Land. Tuy nhiên, khi có cơ hội đến thế giới thực, họ khám phá ra cả niềm vui và sự nguy hiểm của việc sống giữa con người.',
-        price: 85000,
-        director: 'Greta Gerwig',
-        cast: 'Margot Robbie, Ryan Gosling, Issa Rae'
+            'Sau những sự kiện kinh hoàng chưa kịp lắng xuống, một thế lực tà ác cổ xưa tiếp tục trỗi dậy, gieo rắc nỗi ám ảnh khắp một vùng quê hẻo lánh. Những hiện tượng quỷ dị liên tiếp xảy ra, kéo theo hàng loạt cái chết bí ẩn khiến người dân sống trong hoang mang tột độ. Khi một nhóm người quyết định lần theo dấu vết để tìm ra sự thật, họ dần phát hiện ra nghi thức “quỷ nhập tràng” không chỉ là lời đồn, mà là cánh cửa dẫn đến những linh hồn bị nguyền rủa chưa siêu thoát. Càng tiến sâu vào bí mật, họ càng bị cuốn vào vòng xoáy kinh hoàng không lối thoát, nơi ranh giới giữa sự sống và cái chết bị xóa nhòa. Trong cuộc chiến sinh tồn đầy tuyệt vọng, sự thật kinh hoàng phía sau lời nguyền dần được hé lộ, nhưng cái giá phải trả có thể là mạng sống của tất cả.',
+        price: 80000,
+        director: 'Lê Bình Giang',
+        cast: 'Quang Tuấn, Khả Như, Lê Bê La',
+        ageRating: '18+'
     },
     {
         id: 12,
-        title: 'Guardians of the Galaxy Vol. 3',
-        genre: 'Hành động, Phiêu lưu, Khoa học viễn tưởng',
+        title: 'Người Nhện: Khởi Đầu Mới',
+        genre: 'Hành Động, Siêu Anh Hùng, Phiêu Lưu, Khoa Học Viễn Tưởng',
         duration: 150,
         rating: 4.6,
         status: 'now-showing',
-        poster: 'https://image.tmdb.org/t/p/w500/rjJN6WSebCWBjBE7B2Ad16vE5bQ.jpg',
-        trailer: 'https://www.youtube.com/embed/u3V5KDHRQvk',
+        poster: 'https://media-cache.cinematerial.com/p/500x/kseoyehb/spider-man-brand-new-day-movie-poster.jpg?v=1773905471',
+        trailer: 'https://www.youtube.com/embed/aBlsrtxuwss',
         description:
-            'Nhóm Vệ binh Dải Ngân hà phải bảo vệ vũ trụ và một trong những thành viên của họ trong khi đối mặt với một nhiệm vụ nguy hiểm có thể dẫn đến sự giải tán của nhóm.',
-        price: 95000,
-        director: 'James Gunn',
-        cast: 'Chris Pratt, Zoe Saldana, Dave Bautista'
+            'Sau những biến cố làm thay đổi hoàn toàn cuộc sống và danh tính của mình, Peter Parker phải bắt đầu lại từ đầu trong một thế giới nơi không ai còn nhớ đến anh là Spider-Man. Khi cố gắng cân bằng giữa cuộc sống bình thường và trách nhiệm của một người hùng, Peter bất ngờ đối mặt với những mối đe dọa mới nguy hiểm hơn bao giờ hết. Trong khi các thế lực bí ẩn dần xuất hiện và kéo anh vào những âm mưu phức tạp, Peter buộc phải tự đứng vững một mình, trưởng thành hơn và định nghĩa lại ý nghĩa thực sự của việc trở thành Spider-Man. Đây không chỉ là một khởi đầu mới, mà còn là hành trình khám phá bản thân đầy thử thách và cảm xúc.',
+        price: 100000,
+        director: 'Jon Watts',
+        cast: 'Tom Holland'
     },
     {
         id: 13,
-        title: 'Fast X',
-        genre: 'Hành động, Tội phạm, Giật gân',
-        duration: 141,
+        title: 'Avengers: Ngày Tận Thế',
+        genre: 'Hành Động, Khoa Học Viễn Tưởng, Phiêu Lưu, Siêu Anh Hùng    ',
+        duration: 181,
         rating: 4.2,
         status: 'coming-soon',
-        poster: 'https://image.tmdb.org/t/p/w500/1fpddfovt0Jv1P4xzSDG9S2nfy9.jpg',
-        trailer: 'https://www.youtube.com/embed/32IPjSsluyE',
+        poster: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2e317a1c-f1ce-4a5f-90db-d88cc01db2d0/djv6rck-6652b26a-4e8b-45a9-a5e3-26ba54784b0b.png/v1/fill/w_734,h_1088,q_70,strp/avengers_doomsday_poster_4k_2026_december_by_mrandrew7w7_djv6rck-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTg5NiIsInBhdGgiOiJcL2ZcLzJlMzE3YTFjLWYxY2UtNGE1Zi05MGRiLWQ4OGNjMDFkYjJkMFwvZGp2NnJjay02NjUyYjI2YS00ZThiLTQ1YTktYTVlMy0yNmJhNTQ3ODRiMGIucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.Wojc7rto87_iVVfxmDTaUzj1IyH1YnYJmAzs9J9fQp0',
         description:
-            'Dom Toretto và gia đình của anh phải đối mặt với kẻ thù nguy hiểm nhất từ quá khứ của họ - một mối đe dọa nổi lên từ bóng tối của quá khứ để phá vỡ thế giới và phá hủy mọi thứ Dom yêu thương.',
-        price: 90000,
-        director: 'Louis Leterrier',
-        cast: 'Vin Diesel, Michelle Rodriguez, Tyrese Gibson'
+            'Khi một mối đe dọa mang tầm vóc tận thế trỗi dậy, đẩy toàn bộ vũ trụ vào bờ vực sụp đổ, các Avengers buộc phải tái hợp trong nhiệm vụ nguy hiểm nhất từ trước đến nay. Những anh hùng mạnh nhất Trái Đất giờ đây không chỉ đối mặt với một kẻ thù vượt xa mọi giới hạn, mà còn phải đối diện với những lựa chọn khó khăn có thể thay đổi vận mệnh của toàn nhân loại. Khi ranh giới giữa hy sinh và thất bại trở nên mong manh, mỗi quyết định đều phải trả giá bằng những mất mát không thể cứu vãn. Trong cuộc chiến cuối cùng chống lại ngày tận thế, sức mạnh, niềm tin và tinh thần đồng đội sẽ là yếu tố quyết định liệu vũ trụ có còn tồn tại hay không.',
+        trailer: 'https://www.youtube.com/embed/399Ez7WHK5s',
+        price: 100000,
+        director: 'Russo Brothers',
+        cast: 'Robert Downey Jr., Chris Hemsworth, Tom Holland, Benedict Cumberbatch'
     },
     {
         id: 14,
-        title: 'Spider-Man: Across the Spider-Verse',
-        genre: 'Hoạt hình, Hành động, Phiêu lưu',
+        title: 'Câu Chuyện Đồ Chơi 5',
+        genre: 'Hoạt Hình, Hành Động, Phiêu Lưu, Hài Hước, Gia Đình',
         duration: 140,
         rating: 4.8,
         status: 'coming-soon',
-        poster: 'https://image.tmdb.org/t/p/w500/vV5tz4lTDAAlJQcfoXv9D9XpyXW.jpg',
-        trailer: 'https://www.youtube.com/embed/cqGjhVJWtEg',
+        poster: 'https://4kwallpapers.com/images/wallpapers/toy-story-5-lilypad-2560x1080-24524.jpg',
+        trailer: 'https://www.youtube.com/embed/c51ND9Hdbw0',
         description:
-            'Miles Morales trở lại cho chương tiếp theo của saga Spider-Verse đoạt giải Oscar. Sau khi tái hợp với Gwen Stacy, Brooklyn đầy đủ của anh được ném vào bên trong Multiverse.',
-        price: 85000,
-        director: 'Joaquim Dos Santos',
-        cast: 'Shameik Moore, Hailee Steinfeld, Brian Tyree Henry'
+            'Woody, Buzz Lightyear và những người bạn đồ chơi quen thuộc quay trở lại trong một cuộc phiêu lưu hoàn toàn mới, nơi họ phải đối mặt với thế giới hiện đại đang dần thay đổi cách trẻ em vui chơi. Khi những món đồ chơi công nghệ cao xuất hiện, nhóm bạn cũ dần bị lãng quên và đứng trước nguy cơ bị thay thế. Trong hành trình tìm lại giá trị của bản thân, họ bị cuốn vào một chuyến phiêu lưu đầy bất ngờ, nơi tình bạn, lòng trung thành và ý nghĩa thực sự của việc “được yêu thương” được thử thách hơn bao giờ hết. Giữa những khoảnh khắc hài hước và xúc động, câu chuyện tiếp tục mang đến thông điệp sâu sắc về sự trưởng thành và thay đổi.',
+        price: 90000,
+        director: 'Pete Docter',
+        cast: 'Tom Hanks, Tim Allen'
     },
     {
         id: 15,
-        title: 'The Little Mermaid',
-        genre: 'Gia đình, Phiêu lưu, Kỳ ảo',
+        title: 'Hành Tinh Cát 3',
+        genre: 'Khoa Học Viễn Tưởng, Hành Động, Phiêu Lưu, Chính Kịch, Sử Thi',
         duration: 135,
         rating: 4.1,
         status: 'coming-soon',
-        poster: 'https://image.tmdb.org/t/p/w500/ym1dpxOk8tBylnA6OLqI2jw1uOs.jpg',
-        trailer: 'https://www.youtube.com/embed/14W5ZhIq_8w',
+        poster: 'https://i0.wp.com/nexuspointnews.com/wp-content/uploads/2026/03/Dune-Part-3-scaled.jpg?resize=1200%2C630&ssl=1',
+        trailer: 'https://www.youtube.com/embed/3_9vCamtuPY',
         description:
-            'Nàng tiên cá Ariel, con gái của vua Triton, tò mò về thế giới con người và yêu hoàng tử Eric sau khi cứu anh khỏi một cơn bão. Cô thực hiện một thỏa thuận với Ursula, phù thủy biển độc ác, để trở thành con người.',
-        price: 80000,
-        director: 'Rob Marshall',
-        cast: 'Halle Bailey, Jonah Hauer-King, Melissa McCarthy'
+            'Sau những biến cố làm thay đổi vận mệnh của Arrakis, Paul Atreides bước vào giai đoạn quyết định của hành trình định mệnh, nơi quyền lực, tôn giáo và chiến tranh đan xen trong một cuộc xung đột quy mô toàn vũ trụ. Khi ảnh hưởng của Paul ngày càng lan rộng, anh phải đối mặt với những hệ quả khôn lường từ chính lựa chọn của mình, đồng thời chống lại các thế lực âm mưu lật đổ đế chế mới hình thành. Giữa sa mạc khắc nghiệt và những trận chiến đẫm máu, ranh giới giữa người hùng và kẻ hủy diệt trở nên mong manh. Trong hồi kết của bản sử thi, số phận của cả thiên hà sẽ được định đoạt, và cái giá của quyền lực có thể vượt xa mọi sự hy sinh.',
+        price: 100000,
+        director: 'Denis Villeneuve',
+        cast: 'Timothée Chalamet, Zendaya, Florence Pugh, Austin Butler'
     },
     {
         id: 16,
-        title: 'Indiana Jones and the Dial of Destiny',
-        genre: 'Hành động, Phiêu lưu',
+        title: 'Vùng Đất Quỷ Dữ',
+        genre: 'Kinh Dị, Hành Động, Khoa Học Viễn Tưởng, Sinh Tồn',
         duration: 154,
         rating: 4.4,
         status: 'coming-soon',
-        poster: 'https://image.tmdb.org/t/p/w500/Afp2iOIEbAIZ3hRk0w8uPLaK7Ck.jpg',
-        trailer: 'https://www.youtube.com/embed/8qLgPnHhFXA',
+        poster: 'https://m.media-amazon.com/images/M/MV5BZTI3Njk0ZmUtMTVhOC00NTcxLWI3MjgtNjU5YzVkOTgyYWEzXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg',
+        trailer: 'https://www.youtube.com/embed/HSscsSS62oc',
         description:
-            'Năm 1969, Indiana Jones sống trong thời gian mà chính phủ tìm kiếm những nhà khoa học vũ trụ cũ. Khi Jürgen Voller, một cựu thành viên Nazi, tham gia NASA, Indy phải đối mặt với kẻ thù cũ.',
-        price: 90000,
-        director: 'James Mangold',
-        cast: 'Harrison Ford, Phoebe Waller-Bridge, Antonio Banderas'
+            'Khi một loại virus chết người bất ngờ bùng phát, biến con người thành những sinh vật khát máu vô hồn, thế giới nhanh chóng rơi vào hỗn loạn. Trong bối cảnh nền văn minh sụp đổ, một nhóm người sống sót buộc phải chiến đấu để sinh tồn giữa những thành phố hoang tàn và đầy rẫy hiểm nguy. Khi họ lần theo dấu vết của nguồn gốc dịch bệnh, những bí mật đen tối liên quan đến một tập đoàn quyền lực dần được hé lộ, kéo theo một âm mưu vượt xa trí tưởng tượng. Giữa nỗi sợ hãi, phản bội và tuyệt vọng, cuộc chiến không chỉ là chống lại lũ xác sống, mà còn là cuộc đấu tranh để giữ lại phần nhân tính cuối cùng.',
+        price: 85000,
+        director: 'Johannes Roberts',
+        cast: 'Kaya Scodelario, Robbie Amell, Avan Jogia',
+        ageRating: '18+'
     }
 ];
 
@@ -353,7 +356,28 @@ export const showtimes = [
     { movieId: 16, id: 72, time: '13:30', room: 'Phòng 1' },
     { movieId: 16, id: 73, time: '16:30', room: 'Phòng 1' },
     { movieId: 16, id: 74, time: '19:30', room: 'Phòng 1' },
-    { movieId: 16, id: 75, time: '22:30', room: 'Phòng 1' }
+    { movieId: 16, id: 75, time: '22:30', room: 'Phòng 1' },
+
+    // Quỷ Nhập Tràng 2 (ID: 17) - Admin added movie
+    { movieId: 17, id: 76, time: '09:00', room: 'Phòng 2' },
+    { movieId: 17, id: 77, time: '12:30', room: 'Phòng 2' },
+    { movieId: 17, id: 78, time: '15:30', room: 'Phòng 2' },
+    { movieId: 17, id: 79, time: '18:30', room: 'Phòng 2' },
+    { movieId: 17, id: 80, time: '21:30', room: 'Phòng 2' },
+
+    // Chainsaw Man (ID: 18) - Admin added movie
+    { movieId: 18, id: 81, time: '10:00', room: 'Phòng 3' },
+    { movieId: 18, id: 82, time: '13:00', room: 'Phòng 3' },
+    { movieId: 18, id: 83, time: '16:00', room: 'Phòng 3' },
+    { movieId: 18, id: 84, time: '19:00', room: 'Phòng 3' },
+    { movieId: 18, id: 85, time: '22:00', room: 'Phòng 3' },
+
+    // The Nun 2 (ID: 19) - Admin added movie
+    { movieId: 19, id: 86, time: '11:30', room: 'Phòng 1' },
+    { movieId: 19, id: 87, time: '14:30', room: 'Phòng 1' },
+    { movieId: 19, id: 88, time: '17:30', room: 'Phòng 1' },
+    { movieId: 19, id: 89, time: '20:30', room: 'Phòng 1' },
+    { movieId: 19, id: 90, time: '23:30', room: 'Phòng 1' }
 ];
 
 // Thông tin rạp chiếu phim

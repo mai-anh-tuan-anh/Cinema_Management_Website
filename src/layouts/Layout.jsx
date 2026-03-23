@@ -39,8 +39,15 @@ const Layout = () => {
             <nav className='navbar navbar-expand-lg navbar-dark bg-primary fixed-top'>
                 <div className='container'>
                     <Link className='navbar-brand fw-bold p-2' to='/'>
-                        <FaFilm className='me-2' />
-                        CGV Cinemas
+                        <img
+                            src='https://iguov8nhvyobj.vcdn.cloud/skin/frontend/cgv/default/images/cgvlogo.png'
+                            alt='CGV Cinemas'
+                            style={{
+                                height: '40px',
+                                width: 'auto',
+                                marginRight: '10px'
+                            }}
+                        />
                     </Link>
 
                     <button
@@ -59,6 +66,7 @@ const Layout = () => {
                                     className={`nav-link ${isActive('/')}`}
                                     to='/'
                                     style={{ marginLeft: '10px' }}
+                                    onClick={() => window.scrollTo(0, 0)}
                                 >
                                     <FaHome className='me-1' />
                                     Trang chủ
@@ -69,6 +77,7 @@ const Layout = () => {
                                     className={`nav-link ${isActive('/movies')}`}
                                     to='/movies'
                                     style={{ marginLeft: '10px' }}
+                                    onClick={() => window.scrollTo(0, 0)}
                                 >
                                     <FaFilm className='me-1' />
                                     Phim
@@ -79,6 +88,7 @@ const Layout = () => {
                                     className={`nav-link ${isActive('/theater')}`}
                                     to='/theater'
                                     style={{ marginLeft: '10px' }}
+                                    onClick={() => window.scrollTo(0, 0)}
                                 >
                                     <FaMapMarkerAlt className='me-1' />
                                     Địa chỉ
@@ -89,6 +99,7 @@ const Layout = () => {
                                     className={`nav-link ${isActive('/contact')}`}
                                     to='/contact'
                                     style={{ marginLeft: '10px' }}
+                                    onClick={() => window.scrollTo(0, 0)}
                                 >
                                     <FaComments className='me-1' />
                                     Liên hệ
@@ -100,6 +111,7 @@ const Layout = () => {
                                         className={`nav-link ${isActive('/tickets')}`}
                                         to='/tickets'
                                         style={{ marginLeft: '10px' }}
+                                        onClick={() => window.scrollTo(0, 0)}
                                     >
                                         <FaTicketAlt className='me-1' />
                                         Lịch sử vé
@@ -112,6 +124,7 @@ const Layout = () => {
                                         className={`nav-link ${isActive('/admin')}`}
                                         to='/admin'
                                         style={{ marginLeft: '10px' }}
+                                        onClick={() => window.scrollTo(0, 0)}
                                     >
                                         <FaUserShield className='me-1' />
                                         Quản trị
@@ -151,6 +164,9 @@ const Layout = () => {
                                                 <Link
                                                     className='dropdown-item text-warning'
                                                     to='/admin'
+                                                    onClick={() =>
+                                                        window.scrollTo(0, 0)
+                                                    }
                                                 >
                                                     <FaUserShield className='me-2' />
                                                     Quản trị hệ thống
@@ -161,6 +177,9 @@ const Layout = () => {
                                             <Link
                                                 className='dropdown-item'
                                                 to='/tickets'
+                                                onClick={() =>
+                                                    window.scrollTo(0, 0)
+                                                }
                                             >
                                                 <FaTicketAlt className='me-2' />
                                                 Lịch sử vé
@@ -221,6 +240,7 @@ const Layout = () => {
                                         to='/'
                                         className='text-white text-decoration-none'
                                         style={{ marginLeft: '10px' }}
+                                        onClick={() => window.scrollTo(0, 0)}
                                     >
                                         Trang chủ
                                     </Link>
@@ -230,6 +250,7 @@ const Layout = () => {
                                         to='/movies'
                                         className='text-white text-decoration-none'
                                         style={{ marginLeft: '10px' }}
+                                        onClick={() => window.scrollTo(0, 0)}
                                     >
                                         Phim
                                     </Link>
@@ -239,6 +260,7 @@ const Layout = () => {
                                         to='/theater'
                                         className='text-white text-decoration-none'
                                         style={{ marginLeft: '10px' }}
+                                        onClick={() => window.scrollTo(0, 0)}
                                     >
                                         Rạp chiếu
                                     </Link>
@@ -248,6 +270,7 @@ const Layout = () => {
                                         to='/contact'
                                         className='text-white text-decoration-none'
                                         style={{ marginLeft: '10px' }}
+                                        onClick={() => window.scrollTo(0, 0)}
                                     >
                                         Liên hệ
                                     </Link>

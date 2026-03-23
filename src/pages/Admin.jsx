@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { movies } from '../data/movies';
 import AddMovie from '../components/AddMovie';
+import {
+    initializeLocalStorage,
+    getMoviesFromStorage,
+    saveMoviesToStorage
+} from '../utils/localStorageUtils';
 import { FaFilm, FaPlus, FaTrash, FaSearch } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,17 +20,13 @@ const Admin = () => {
     // Load movies from localStorage on mount
     useEffect(() => {
         // Always refresh from movies.js first
-        localStorage.setItem('movies', JSON.stringify(movies));
-        setAdminMovies(movies);
+        initializeLocalStorage();
+        setAdminMovies(getMoviesFromStorage());
     }, []);
 
     // Refresh movies list after adding new movie
     const refreshMovies = () => {
-        // Always get latest from localStorage (which should be synced with movies.js)
-        const storedMovies = localStorage.getItem('movies');
-        if (storedMovies) {
-            setAdminMovies(JSON.parse(storedMovies));
-        }
+        setAdminMovies(getMoviesFromStorage());
     };
 
     // Filter movies based on search

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { movies, showtimes } from '../data/movies';
+import { movies } from '../data/movies';
 import { useAuth } from '../context/AuthContext';
+import {
+    initializeLocalStorage,
+    getShowtimesFromStorage
+} from '../utils/localStorageUtils';
 import {
     FaTicketAlt,
     FaCalendarAlt,
@@ -28,6 +32,7 @@ const BookTicket = () => {
     const [showCheckoutModal, setShowCheckoutModal] = useState(false);
     const [showPaymentModal, setShowPaymentModal] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState('credit');
+    const [showtimes, setShowtimes] = useState([]);
 
     useEffect(() => {
         if (!user) {
@@ -36,13 +41,18 @@ const BookTicket = () => {
             return;
         }
 
+        // Load showtimes from localStorage
+        initializeLocalStorage();
+        const allShowtimes = getShowtimesFromStorage();
+        setShowtimes(allShowtimes);
+
         if (movie) {
             // Set default date to today
             const today = new Date().toISOString().split('T')[0];
             setSelectedDate(today);
 
             // Load booked seats from localStorage
-            loadBookedSeats(today, showtimes[0]?.id);
+            loadBookedSeats(today, allShowtimes[0]?.id);
         }
     }, [movie, user, navigate]);
 

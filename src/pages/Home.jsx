@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router';
 import { movies } from '../data/movies';
+import {
+    initializeLocalStorage,
+    getMoviesFromStorage
+} from '../utils/localStorageUtils';
 import {
     FaInfoCircle,
     FaSearch,
@@ -13,19 +17,107 @@ import {
 } from 'react-icons/fa';
 
 const Home = () => {
+    const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
+    const [allMovies, setAllMovies] = useState(movies);
 
-    const nowShowingMovies = movies
+    // Load movies from localStorage with real-time sync
+    useEffect(() => {
+        const updateMovies = () => {
+            const storedMovies = getMoviesFromStorage();
+            setAllMovies(storedMovies);
+            console.log('Updated movies from localStorage:', storedMovies);
+        };
+
+        // Initialize localStorage on first visit
+        if (
+            !localStorage.getItem('movies') ||
+            !localStorage.getItem('showtimes')
+        ) {
+            initializeLocalStorage();
+        }
+
+        // Always refresh with latest data from movies.js
+        initializeLocalStorage();
+        setAllMovies(movies);
+
+        // Initial load
+        updateMovies();
+
+        // Storage event listener for real-time sync
+        const handleStorageChange = (event) => {
+            if (event.key === 'movies' && event.newValue) {
+                try {
+                    const updatedMovies = JSON.parse(event.newValue);
+                    setAllMovies(updatedMovies);
+                    console.log(
+                        'Real-time movies update received:',
+                        updatedMovies
+                    );
+                } catch (error) {
+                    console.error('Error parsing storage event:', error);
+                }
+            }
+        };
+
+        // Custom event listener for same-tab updates
+        const handleCustomUpdate = (event) => {
+            if (event.detail.key === 'movies') {
+                setAllMovies(event.detail.value);
+                console.log(
+                    'Custom movies update received:',
+                    event.detail.value
+                );
+            }
+        };
+
+        // Add event listeners
+        window.addEventListener('storage', handleStorageChange);
+        window.addEventListener('localStorageUpdate', handleCustomUpdate);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener(
+                'localStorageUpdate',
+                handleCustomUpdate
+            );
+        };
+    }, []);
+
+    const nowShowingMovies = allMovies
         .filter((m) => m.status === 'now-showing')
         .slice(0, 8);
-    const comingSoonMovies = movies
+    const comingSoonMovies = allMovies
         .filter((m) => m.status === 'coming-soon')
         .slice(0, 8);
 
-    const featuredMovies = nowShowingMovies.slice(0, 3);
+    const featuredMovies = [...nowShowingMovies, ...comingSoonMovies].slice(
+        0,
+        3
+    );
+    console.log('Featured movies:', featuredMovies.length, featuredMovies);
+
+    // Get review count and average rating for each movie
+    const getReviewCount = (movieId) => {
+        const reviews = JSON.parse(
+            localStorage.getItem(`reviews_${movieId}`) || '[]'
+        );
+        return reviews.length;
+    };
+
+    const getMovieRating = (movie) => {
+        const reviews = JSON.parse(
+            localStorage.getItem(`reviews_${movie.id}`) || '[]'
+        );
+        if (reviews.length > 0) {
+            const totalRating = reviews.reduce((sum, r) => sum + r.rating, 0);
+            return (totalRating / reviews.length).toFixed(1);
+        }
+        return movie.rating.toFixed(1);
+    };
 
     const filteredMovies = searchTerm
-        ? movies.filter(
+        ? allMovies.filter(
               (m) =>
                   m.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                   m.genre.toLowerCase().includes(searchTerm.toLowerCase())
@@ -39,6 +131,8 @@ const Home = () => {
                 id='heroCarousel'
                 className='carousel slide mt-4'
                 data-bs-ride='carousel'
+                data-bs-interval='3000'
+                data-bs-wrap='true'
             >
                 <div className='carousel-indicators'>
                     {featuredMovies.map((_, index) => (
@@ -76,6 +170,7 @@ const Home = () => {
                                     <Link
                                         to={`/movie/${movie.id}`}
                                         className='btn btn-primary'
+                                        onClick={() => window.scrollTo(0, 0)}
                                     >
                                         <FaInfoCircle className='me-2' />
                                         Xem chi tiết
@@ -104,105 +199,6 @@ const Home = () => {
                 </button>
             </div>
 
-            {/* Search Section */}
-            <div className='container my-5'>
-                <div className='row justify-content-center'>
-                    <div className='col-md-8'>
-                        <div className='input-group input-group-lg'>
-                            <span className='input-group-text'>
-                                <FaSearch />
-                            </span>
-                            <input
-                                type='text'
-                                className='form-control'
-                                placeholder='Tìm kiếm phim theo tên hoặc thể loại...'
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                        </div>
-
-                        {/* Search Results */}
-                        {searchTerm && (
-                            <div className='mt-3'>
-                                <h5>
-                                    Kết quả tìm kiếm ({filteredMovies.length})
-                                </h5>
-                                {filteredMovies.length > 0 ? (
-                                    <div className='row'>
-                                        {filteredMovies.map((movie) => (
-                                            <div
-                                                key={movie.id}
-                                                className='col-md-4 mb-3'
-                                            >
-                                                <div className='card movie-card h-100'>
-                                                    <div className='position-relative'>
-                                                        <img
-                                                            src={movie.poster}
-                                                            className='card-img-top'
-                                                            alt={movie.title}
-                                                            style={{
-                                                                height: '300px',
-                                                                objectFit:
-                                                                    'cover'
-                                                            }}
-                                                        />
-                                                        {movie.ageRating && (
-                                                            <span className='position-absolute top-0 start-0 badge bg-danger m-2'>
-                                                                {
-                                                                    movie.ageRating
-                                                                }
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                    <div className='card-body'>
-                                                        <h6
-                                                            className='card-title'
-                                                            style={{
-                                                                whiteSpace:
-                                                                    'nowrap',
-                                                                overflow:
-                                                                    'hidden',
-                                                                textOverflow:
-                                                                    'ellipsis'
-                                                            }}
-                                                        >
-                                                            {movie.title}
-                                                        </h6>
-                                                        <p
-                                                            className='card-text small text-muted'
-                                                            style={{
-                                                                whiteSpace:
-                                                                    'nowrap',
-                                                                overflow:
-                                                                    'hidden',
-                                                                textOverflow:
-                                                                    'ellipsis'
-                                                            }}
-                                                        >
-                                                            {movie.genre}
-                                                        </p>
-                                                        <Link
-                                                            to={`/movie/${movie.id}`}
-                                                            className='btn btn-sm btn-primary'
-                                                        >
-                                                            Xem chi tiết
-                                                        </Link>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <div className='alert alert-info'>
-                                        Không tìm thấy phim nào
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
-
             {/* Now Showing Movies */}
             <div className='container my-5'>
                 <h2 className='mb-4'>
@@ -220,7 +216,12 @@ const Home = () => {
                                         alt={movie.title}
                                         style={{
                                             height: '350px',
-                                            objectFit: 'cover'
+                                            objectFit: 'cover',
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={() => {
+                                            navigate(`/movie/${movie.id}`);
+                                            window.scrollTo(0, 0);
                                         }}
                                     />
                                     {movie.ageRating && (
@@ -258,7 +259,7 @@ const Home = () => {
                                     <div className='mb-2'>
                                         <FaStar className='text-warning me-1' />
                                         <span className='fw-bold'>
-                                            {movie.rating.toFixed(1)}
+                                            {getMovieRating(movie)}
                                         </span>
                                         /5.0
                                     </div>
@@ -266,6 +267,9 @@ const Home = () => {
                                         <Link
                                             to={`/movie/${movie.id}`}
                                             className='btn btn-primary w-100 mb-2'
+                                            onClick={() =>
+                                                window.scrollTo(0, 0)
+                                            }
                                         >
                                             <FaInfoCircle className='me-1' />
                                             Chi tiết
@@ -273,6 +277,9 @@ const Home = () => {
                                         <Link
                                             to={`/book/${movie.id}`}
                                             className='btn btn-success w-100'
+                                            onClick={() =>
+                                                window.scrollTo(0, 0)
+                                            }
                                         >
                                             <FaTicketAlt className='me-1' />
                                             Đặt vé
@@ -302,8 +309,12 @@ const Home = () => {
                                         alt={movie.title}
                                         style={{
                                             height: '350px',
-                                            objectFit: 'cover'
+                                            objectFit: 'cover',
+                                            cursor: 'pointer'
                                         }}
+                                        onClick={() =>
+                                            navigate(`/movie/${movie.id}`)
+                                        }
                                     />
                                     <span className='position-absolute top-0 end-0 badge bg-warning text-dark m-2'>
                                         Sắp chiếu
@@ -335,17 +346,13 @@ const Home = () => {
                                         <FaClock className='me-1' />
                                         {movie.duration} phút
                                     </p>
-                                    <div className='mb-2'>
-                                        <FaStar className='text-warning me-1' />
-                                        <span className='fw-bold'>
-                                            {movie.rating.toFixed(1)}
-                                        </span>
-                                        /5.0
-                                    </div>
                                     <div className='mt-auto'>
                                         <Link
                                             to={`/movie/${movie.id}`}
                                             className='btn btn-primary w-100'
+                                            onClick={() =>
+                                                window.scrollTo(0, 0)
+                                            }
                                         >
                                             <FaInfoCircle className='me-1' />
                                             Chi tiết

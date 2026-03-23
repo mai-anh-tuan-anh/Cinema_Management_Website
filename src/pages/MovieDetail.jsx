@@ -55,7 +55,11 @@ const MovieDetail = () => {
                     <FaExclamationTriangle className='me-2' />
                     Không tìm thấy phim
                 </div>
-                <Link to='/' className='btn btn-primary'>
+                <Link
+                    to='/'
+                    className='btn btn-primary'
+                    onClick={() => window.scrollTo(0, 0)}
+                >
                     <FaArrowLeft className='me-2' />
                     Về trang chủ
                 </Link>
@@ -163,6 +167,7 @@ const MovieDetail = () => {
                                 <Link
                                     to={`/book/${movie.id}`}
                                     className='btn btn-success w-100 btn-lg'
+                                    onClick={() => window.scrollTo(0, 0)}
                                 >
                                     <FaTicketAlt className='me-2' />
                                     Đặt vé ngay
@@ -191,10 +196,12 @@ const MovieDetail = () => {
                                 <FaClock className='me-1' />
                                 {movie.duration} phút
                             </span>
-                            <span className='badge bg-warning text-dark'>
-                                <FaStar className='me-1' />
-                                {averageRating} / 5.0
-                            </span>
+                            {movie.status === 'now-showing' && (
+                                <span className='badge bg-warning text-dark'>
+                                    <FaStar className='me-1' />
+                                    {averageRating} / 5.0
+                                </span>
+                            )}
                         </div>
 
                         <div className='card mb-4'>
@@ -325,8 +332,15 @@ const MovieDetail = () => {
                                     <div className='alert alert-info mb-4'>
                                         <FaInfoCircle className='me-2' />
                                         Vui lòng{' '}
-                                        <Link to='/auth'>đăng nhập</Link> để
-                                        đánh giá phim
+                                        <Link
+                                            to='/auth'
+                                            onClick={() =>
+                                                window.scrollTo(0, 0)
+                                            }
+                                        >
+                                            đăng nhập
+                                        </Link>{' '}
+                                        để đánh giá phim
                                     </div>
                                 )}
 

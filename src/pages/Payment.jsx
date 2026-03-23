@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { movies } from '../data/movies';
+import { useAuth } from '../context/AuthContext';
+import {
+    initializeLocalStorage,
+    getShowtimesFromStorage
+} from '../utils/localStorageUtils';
 import {
     FaArrowLeft,
     FaCreditCard,
@@ -17,69 +22,73 @@ import 'react-toastify/dist/ReactToastify.css';
 const Payment = () => {
     const { id, date, showtimeId, seats } = useParams();
     const navigate = useNavigate();
+    const { user, addTicket } = useAuth();
 
     const movie = movies.find((m) => m.id === parseInt(id));
     const [paymentMethod, setPaymentMethod] = useState('credit');
     const [isProcessing, setIsProcessing] = useState(false);
+    const [showtimes, setShowtimes] = useState([]);
+
+    // Load showtimes from localStorage
+    useEffect(() => {
+        initializeLocalStorage();
+        const allShowtimes = getShowtimesFromStorage();
+        setShowtimes(allShowtimes);
+    }, []);
 
     // Parse seats from URL
     const selectedSeats = seats ? seats.split(',') : [];
     const totalPrice = selectedSeats.length * (movie?.price || 0);
 
     // Find showtime details
-    const showtimes = [
-        { id: 1, time: '09:00', room: 'Phòng 1' },
-        { id: 2, time: '12:30', room: 'Phòng 2' },
-        { id: 3, time: '15:00', room: 'Phòng 1' },
-        { id: 4, time: '18:30', room: 'Phòng 3' },
-        { id: 5, time: '21:00', room: 'Phòng 2' }
-    ];
     const selectedShowtime = showtimes.find(
         (s) => s.id === parseInt(showtimeId)
     );
 
     const handlePayment = async () => {
+        console.log('Payment started', { user, movie, selectedSeats });
+
+        if (!user) {
+            toast.error('Vui lòng đăng nhập để thanh toán!');
+            navigate('/auth');
+            return;
+        }
+
         setIsProcessing(true);
 
-        // Simulate payment processing
+        // Save booked seats
+        const key = `booked_${movie.id}_${date}_${showtimeId}`;
+        const currentBooked = JSON.parse(localStorage.getItem(key) || '[]');
+        const updatedBooked = [...currentBooked, ...selectedSeats];
+        localStorage.setItem(key, JSON.stringify(updatedBooked));
+
+        // Create ticket
+        const ticket = {
+            id: Date.now(),
+            movieId: movie.id,
+            movieTitle: movie.title,
+            poster: movie.poster,
+            date: date,
+            showtime: selectedShowtime.time,
+            room: selectedShowtime.room,
+            seats: selectedSeats.sort(),
+            price: movie.price,
+            totalPrice: totalPrice,
+            bookingDate: new Date().toISOString()
+        };
+
+        console.log('Ticket created', ticket);
+
+        // Add ticket using AuthContext
+        addTicket(ticket);
+        console.log('Ticket added successfully');
+
+        setIsProcessing(false);
+        toast.success('Thanh toán thành công! Đang chuyển hướng...');
+
+        // Redirect to tickets after delay
         setTimeout(() => {
-            // Save booked seats
-            const key = `booked_${movie.id}_${date}_${showtimeId}`;
-            const currentBooked = JSON.parse(localStorage.getItem(key) || '[]');
-            const updatedBooked = [...currentBooked, ...selectedSeats];
-            localStorage.setItem(key, JSON.stringify(updatedBooked));
-
-            // Create ticket
-            const ticket = {
-                id: Date.now(),
-                movieId: movie.id,
-                movieTitle: movie.title,
-                poster: movie.poster,
-                date: date,
-                showtime: selectedShowtime.time,
-                room: selectedShowtime.room,
-                seats: selectedSeats.sort(),
-                price: movie.price,
-                totalPrice: totalPrice,
-                bookingDate: new Date().toISOString()
-            };
-
-            // Get user from localStorage and add ticket
-            const user = JSON.parse(localStorage.getItem('user') || '{}');
-            if (user.tickets) {
-                user.tickets.push(ticket);
-            } else {
-                user.tickets = [ticket];
-            }
-            localStorage.setItem('user', JSON.stringify(user));
-
-            setIsProcessing(false);
-            toast.success('Thanh toán thành công! Đang chuyển hướng...');
-
-            // Redirect to tickets after delay
-            setTimeout(() => {
-                navigate('/tickets');
-            }, 2000);
+            navigate('/tickets');
         }, 2000);
     };
 

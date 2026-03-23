@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { movies } from '../data/movies';
+import {
+    initializeLocalStorage,
+    getMoviesFromStorage
+} from '../utils/localStorageUtils';
 import {
     FaFilm,
     FaPlayCircle,
@@ -17,6 +21,7 @@ import {
 } from 'react-icons/fa';
 
 const Movies = () => {
+    const navigate = useNavigate();
     const [filter, setFilter] = useState('all');
     const [sortBy, setSortBy] = useState('name');
     const [searchQuery, setSearchQuery] = useState('');
@@ -25,19 +30,72 @@ const Movies = () => {
     const [allMovies, setAllMovies] = useState([]);
     const moviesPerPage = 8;
 
-    // Load movies from localStorage or fallback to initial movies
+    // Load movies from localStorage with real-time sync
     useEffect(() => {
-        const storedMovies = localStorage.getItem('movies');
-        if (storedMovies) {
-            setAllMovies(JSON.parse(storedMovies));
-        } else {
-            setAllMovies(movies);
+        const updateMovies = () => {
+            const storedMovies = getMoviesFromStorage();
+            setAllMovies(storedMovies);
+            console.log('Updated movies from localStorage:', storedMovies);
+        };
+
+        // Initialize localStorage on first visit
+        if (
+            !localStorage.getItem('movies') ||
+            !localStorage.getItem('showtimes')
+        ) {
+            initializeLocalStorage();
         }
+
+        // Initial load
+        updateMovies();
+
+        // Storage event listener for real-time sync
+        const handleStorageChange = (event) => {
+            if (event.key === 'movies' && event.newValue) {
+                try {
+                    const updatedMovies = JSON.parse(event.newValue);
+                    setAllMovies(updatedMovies);
+                    console.log(
+                        'Real-time movies update received:',
+                        updatedMovies
+                    );
+                } catch (error) {
+                    console.error('Error parsing storage event:', error);
+                }
+            }
+        };
+
+        // Custom event listener for same-tab updates
+        const handleCustomUpdate = (event) => {
+            if (event.detail.key === 'movies') {
+                setAllMovies(event.detail.value);
+                console.log(
+                    'Custom movies update received:',
+                    event.detail.value
+                );
+            }
+        };
+
+        // Add event listeners
+        window.addEventListener('storage', handleStorageChange);
+        window.addEventListener('localStorageUpdate', handleCustomUpdate);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener(
+                'localStorageUpdate',
+                handleCustomUpdate
+            );
+        };
     }, []);
 
-    // Extract unique genres
+    // Extract unique genres in lowercase to avoid duplicates
     const allGenres = [
-        ...new Set(allMovies.flatMap((m) => m.genre.split(', ')))
+        ...new Set(
+            allMovies.flatMap((m) =>
+                m.genre.split(', ').map((g) => g.toLowerCase().trim())
+            )
+        )
     ].sort();
 
     let filteredMovies = allMovies;
@@ -57,7 +115,7 @@ const Movies = () => {
     // Filter by genre
     if (genreFilter !== 'all') {
         filteredMovies = filteredMovies.filter((m) =>
-            m.genre.includes(genreFilter)
+            m.genre.toLowerCase().includes(genreFilter.toLowerCase())
         );
     }
 
@@ -215,7 +273,7 @@ const Movies = () => {
                         <option value='all'>Tất cả</option>
                         {allGenres.map((genre) => (
                             <option key={genre} value={genre}>
-                                {genre}
+                                {genre.charAt(0).toUpperCase() + genre.slice(1)}
                             </option>
                         ))}
                     </select>
@@ -242,6 +300,10 @@ const Movies = () => {
                                             height: '400px',
                                             objectFit: 'cover',
                                             cursor: 'pointer'
+                                        }}
+                                        onClick={() => {
+                                            navigate(`/movie/${movie.id}`);
+                                            window.scrollTo(0, 0);
                                         }}
                                     />
                                     {movie.status === 'coming-soon' && (
@@ -282,16 +344,20 @@ const Movies = () => {
                                         {movie.duration} phút
                                     </p>
                                     <div className='mb-2'>
-                                        <FaStar className='text-warning me-1' />
-                                        <span className='fw-bold'>
-                                            {movieRating}
-                                        </span>
-                                        /5.0
-                                        <span className='text-muted ms-2'>
-                                            ({reviewCount} đánh giá)
-                                        </span>
+                                        {movie.status === 'now-showing' && (
+                                            <>
+                                                <FaStar className='text-warning me-1' />
+                                                <span className='fw-bold'>
+                                                    {movieRating}
+                                                </span>
+                                                /5.0
+                                                <span className='text-muted ms-2'>
+                                                    ({reviewCount} đánh giá)
+                                                </span>
+                                            </>
+                                        )}
                                     </div>
-                                    <p className='card-text small text-muted'>
+                                    <p className='card-text text-success fw-bold fs-6'>
                                         <FaDollarSign className='me-1' />
                                         {movie.price.toLocaleString('vi-VN')}đ
                                     </p>
@@ -299,6 +365,9 @@ const Movies = () => {
                                         <Link
                                             to={`/movie/${movie.id}`}
                                             className='btn btn-primary w-100 mb-2'
+                                            onClick={() =>
+                                                window.scrollTo(0, 0)
+                                            }
                                         >
                                             <FaInfoCircle className='me-1' />
                                             Chi tiết
@@ -307,6 +376,9 @@ const Movies = () => {
                                             <Link
                                                 to={`/book/${movie.id}`}
                                                 className='btn btn-success w-100'
+                                                onClick={() =>
+                                                    window.scrollTo(0, 0)
+                                                }
                                             >
                                                 <FaTicketAlt className='me-1' />
                                                 Đặt vé
