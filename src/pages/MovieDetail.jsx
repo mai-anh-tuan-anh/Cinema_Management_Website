@@ -36,7 +36,6 @@ const MovieDetail = () => {
         );
         setReviews(storedReviews);
     }, [id]);
-    const [hoverRating, setHoverRating] = useState(0);
 
     useEffect(() => {
         if (movie) {
@@ -138,7 +137,11 @@ const MovieDetail = () => {
             localStorage.setItem('movies', JSON.stringify(updatedMovies));
         }
 
-        setNewReview({ rating: 5, comment: '' });
+        // Save the rating before resetting
+        const submittedRating = userRating;
+
+        // Reset form but keep the last selected rating
+        setNewReview({ rating: submittedRating, comment: '' });
         setUserRating(0);
         toast.success('Cảm ơn bạn đã đánh giá!');
     };
@@ -281,23 +284,18 @@ const MovieDetail = () => {
                                                 {[1, 2, 3, 4, 5].map((star) => (
                                                     <FaStar
                                                         key={star}
-                                                        className={`${star <= (hoverRating || newReview.rating) ? 'text-warning' : 'text-muted'}`}
+                                                        className={`${star <= userRating ? 'text-warning' : 'text-muted'}`}
                                                         style={{
                                                             cursor: 'pointer',
                                                             fontSize: '2rem'
                                                         }}
-                                                        onMouseEnter={() =>
-                                                            setHoverRating(star)
-                                                        }
-                                                        onMouseLeave={() =>
-                                                            setHoverRating(0)
-                                                        }
-                                                        onClick={() =>
+                                                        onClick={() => {
                                                             setNewReview({
                                                                 ...newReview,
                                                                 rating: star
-                                                            })
-                                                        }
+                                                            });
+                                                            setUserRating(star);
+                                                        }}
                                                     />
                                                 ))}
                                             </div>
