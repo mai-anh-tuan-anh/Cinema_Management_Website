@@ -57,11 +57,10 @@ export const movies = [
         poster: 'https://th.bing.com/th/id/R.0ac16a74286cef7b9ce725e6b998f3b0?rik=VYeY%2fSGwZ0jXyA&riu=http%3a%2f%2fwww.bustedtees.com%2fcdn%2fshop%2ffiles%2f1_09865ca1-dae1-4992-8f08-48d117eb1b8c_1200x630.png%3fv%3d1727105653&ehk=%2fGR8PBId7Cr5A%2fqN9%2fKNioch9ufp5gL7cp4RiAZoggk%3d&risl=&pid=ImgRaw&r=0',
         trailer: 'https://www.youtube.com/embed/UXp2T7cCUw4',
         description:
-            'Một bộ phim hài lãng mạn nhẹ nhàng về cuộc sống thường ngày. Những tình huống dở khóc dở cười sẽ mang đến tiếng cười cho cả gia đình.',
-        price: 75000,
-        director: 'Judd Apatow',
-        cast: 'Adam Sandler, Jennifer Aniston, Brooklyn Decker',
-        ageRating: '18+'
+            'Một chàng trai trẻ bất ngờ nhận được lời mời tham gia một bữa tiệc xa hoa kéo dài 5 đêm tại biệt thự bí ẩn của một ông trùm âm nhạc quyền lực mang tên Diddy. Ban đầu, đó là chuỗi ngày ăn chơi hào nhoáng, nơi mọi thứ đều vượt xa trí tưởng tượng. Nhưng càng về sau, những điều kỳ lạ bắt đầu xảy ra: những vị khách biến mất không dấu vết, những quy tắc ngầm không ai dám nhắc đến, và bầu không khí ngày càng trở nên ngột ngạt, đáng sợ. Khi sự thật dần lộ diện, chàng trai nhận ra mình đã bị cuốn vào một “trò chơi” nguy hiểm, nơi mỗi đêm trôi qua là một thử thách sinh tồn đầy ám ảnh. Để sống sót và thoát ra, anh buộc phải đối mặt với những bí mật đen tối ẩn sau ánh hào quang.',
+        price: 70000,
+        director: 'Jordan Peele',
+        cast: 'Sean John Combs, Donald Glover, Keke Palmer'
     },
     {
         id: 5,
